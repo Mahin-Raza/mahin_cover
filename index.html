@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cover Letter | Mahin Saiyed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Light Slate background, Dark Slate text, Muted Teal accent) -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling layout with distinct interactive sections: Hero, The Pitch, Key Achievements (interactive cards with a data visualization), Core Skills (a dynamic tag cloud), and a final Call to Action. This structure transforms the linear letter into an engaging, scannable portfolio piece. It highlights key qualifications immediately and uses interactivity to encourage exploration, providing a more memorable experience for a recruiter than a static document. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Key Achievements -> Goal: Compare/Inform -> Viz/Method: Interactive Cards (HTML/Tailwind) with Icons & Stats -> Interaction: Hover effect to draw attention -> Justification: Breaks down dense text into scannable, impactful highlights.
+        - Report Info: "20% efficiency" metric (from CV) -> Goal: Inform -> Viz/Method: Donut Chart (Chart.js/Canvas) -> Interaction: Tooltip on hover -> Justification: Provides a clear, quantitative visual anchor for the achievement, making the data point more compelling.
+        - Report Info: List of technical skills -> Goal: Organize/Inform -> Viz/Method: Tag Cloud / Pills (HTML/Tailwind) -> Interaction: Hover effect -> Justification: More visually engaging and modern than a standard bulleted list, allowing for quick scanning of capabilities.
+        - Report Info: Relocation Status -> Goal: Inform -> Viz/Method: Highlighted text box -> Interaction: None -> Justification: Elevates critical logistical information for recruiters so it is not missed.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Header / Hero Section -->
+        <header class="text-center py-8 border-b border-slate-200">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">MAHIN SAIYED</h1>
+            <p class="text-xl md:text-2xl text-teal-700 mt-2">Cloud Engineer</p>
+            <div class="mt-6 flex justify-center items-center space-x-6">
+                <a href="mailto:mraza.saiyed@gmail.com" class="text-slate-600 hover:text-teal-700 transition-colors">
+                    <span class="text-2xl">📧</span>
+                </a>
+                <a href="https://www.linkedin.com/in/mahinataws/" target="_blank" class="text-slate-600 hover:text-teal-700 transition-colors">
+                    <span class="text-2xl">🔗</span>
+                </a>
+                <span class="text-slate-600 flex items-center">
+                    <span class="text-2xl mr-2">📍</span> S Allen Rd, Saint Clair, MI
+                </span>
+            </div>
+        </header>
+
+        <main class="mt-10">
+
+            <!-- The Pitch Section -->
+            <section id="pitch" class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                <div class="bg-teal-50 border-l-4 border-teal-500 text-teal-800 p-4 rounded-r-lg mb-6">
+                    <h3 class="font-bold">Relocation & Work Authorization Status</h3>
+                    <p class="mt-1 text-sm">I am actively planning my relocation to the United States for Q4 2025 and will possess the necessary work permit, requiring no visa sponsorship.</p>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Letter of Interest</h2>
+                <p class="text-slate-700 leading-relaxed">
+                    Dear [Hiring Manager Name or Hiring Team],
+                </p>
+                <p class="mt-4 text-slate-700 leading-relaxed">
+                    I am writing to express my strong interest in the <strong class="text-teal-700">[Job Title]</strong> position at <strong class="text-teal-700">[Company Name]</strong>, as advertised on <strong class="text-teal-700">[Platform]</strong>. With over six years of experience as a Cloud Engineer at Amazon Web Services specializing in scalable AWS solutions, I am confident my expertise in delivering high-impact cloud architecture, automation, and migration projects aligns perfectly with your requirements.
+                </p>
+            </section>
+
+            <!-- Key Achievements Section -->
+            <section id="achievements" class="mt-10">
+                <h2 class="text-2xl font-bold text-center text-slate-900 mb-8">Proven Track Record of Impact</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    
+                    <!-- Card 1: App Migration -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-3xl mb-3">🚀</div>
+                        <h3 class="font-bold text-lg text-slate-900">Application Migration</h3>
+                        <p class="text-slate-600 mt-2 text-sm">Spearheaded 50+ on-premise application migrations to AWS, achieving a <span class="font-bold text-teal-700">tenfold performance improvement</span>.</p>
+                    </div>
+
+                    <!-- Card 2: Storage Solutions -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-3xl mb-3">🗄️</div>
+                        <h3 class="font-bold text-lg text-slate-900">Scalable Cloud Storage</h3>
+                        <p class="text-slate-600 mt-2 text-sm">Designed and implemented petabyte-scale cloud storage solutions, reducing costs while improving data accessibility.</p>
+                    </div>
+                    
+                    <!-- Card 3: Disaster Recovery -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-3xl mb-3">🛡️</div>
+                        <h3 class="font-bold text-lg text-slate-900">Disaster Recovery</h3>
+                        <p class="text-slate-600 mt-2 text-sm">Led DR initiatives to ensure business continuity with robust strategies and recovery times of less than a single-digit hour.</p>
+                    </div>
+
+                    <!-- Card 4: Automation & GenAI -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center">
+                        <div class="text-3xl mb-3">🤖</div>
+                        <h3 class="font-bold text-lg text-slate-900">Automation & GenAI</h3>
+                        <p class="text-slate-600 mt-2 text-sm mb-4">Improved operational efficiency using AWS Boto3 SDK, CloudFormation, and Generative AI.</p>
+                        <div class="chart-container">
+                            <canvas id="efficiencyChart"></canvas>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Core Skills Section -->
+            <section id="skills" class="mt-12">
+                <h2 class="text-2xl font-bold text-center text-slate-900 mb-8">Core Competencies</h2>
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm text-center">
+                    <div class="flex flex-wrap justify-center items-center gap-3">
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">High-Performance Computing</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-4 py-2 rounded-full">Python Scripting</span>
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">Hybrid & Cloud Migration</span>
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">Highly Available Systems</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-4 py-2 rounded-full">Event-Driven Architecture</span>
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">AWS Boto3 & CloudFormation</span>
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">Generative AI Integration</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-4 py-2 rounded-full">Cloud Security</span>
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">Databases (RDS, DynamoDB)</span>
+                        <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full">Networking & CDN</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer / CTA Section -->
+        <footer class="text-center mt-12 py-8 border-t border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900">Let's Connect</h2>
+            <p class="text-slate-600 mt-2 max-w-2xl mx-auto">
+                Thank you for your time and consideration. I have attached my CV for a more detailed review of my qualifications and welcome the opportunity to discuss how my skills and experience can bring value to [Company Name].
+            </p>
+            <div class="mt-6">
+                <a href="https://drive.google.com/file/d/1lA6Bkzc_Zl9Kk5EjRJD_ZIroZIZ_biuM/view?usp=sharing" class="bg-teal-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors shadow hover:shadow-md">
+                    Download Full CV
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('efficiencyChart').getContext('2d');
+            const efficiencyChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Improved Efficiency', 'Remaining'],
+                    datasets: [{
+                        data: [20, 80],
+                        backgroundColor: [
+                            '#0d9488', // teal-600
+                            '#f1f5f9'  // slate-100
+                        ],
+                        borderColor: [
+                            '#0d9488',
+                            '#f1f5f9'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: '20% Efficiency Gain',
+                            position: 'bottom',
+                            align: 'center',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#0f172a',
+                            padding: {
+                                top: 10
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
